@@ -2,8 +2,8 @@ title: Jesse Schauer
 email: JesseSchauer@outlook.com
 description: >-
   One-man dev shop. The merc they call in to get stuff done. I build trust, not just code.
-baseurl: "/jesse-schauer.github.io"
-url: "https://jesse-schauer.github.io"
+baseurl: ""
+url: "https://jesseschauer.com"
 remote_theme: "mmistakes/minimal-mistakes"
 minimal_mistakes_skin: "dark"
 
