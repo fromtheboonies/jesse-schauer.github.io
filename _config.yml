@@ -1,0 +1,25 @@
+title: Jesse Schauer
+email: JesseSchauer@outlook.com
+description: >-
+  One-man dev shop. The merc they call in to get stuff done. I build trust, not just code.
+baseurl: ""
+url: "https://jesse-schauer.github.io"
+remote_theme: "mmistakes/minimal-mistakes"
+minimal_mistakes_skin: "dark"
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-include-cache
+  - jekyll-remote-theme
+
+# Navigation menu
+header_pages:
+  - about.md
+  - projects.md
+  - resume.md
+  - contact.md
+  - now.md
+
+sidebar:
+  nav: "main"
