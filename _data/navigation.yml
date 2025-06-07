@@ -1,13 +1,21 @@
 main:
   - title: "Home"
     url: /
+
   - title: "About"
     url: /about/
-  - title: "Projects"
-    url: /projects/
+
+  - title: "Personal Projects"
+    url: /projects/personal/
+
+  - title: "Work Projects"
+    url: /projects/work/
+
   - title: "Resume"
     url: /resume/
+
   - title: "Contact"
     url: /contact/
+
   - title: "Now"
     url: /now/
