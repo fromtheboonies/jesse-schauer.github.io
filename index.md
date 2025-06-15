@@ -27,7 +27,7 @@ Whether it’s stabilizing a broken benefits platform, automating years of manua
 
 - 🎓 Master’s in Software Engineering, graduated with honors
 - 🎓 B.S. in Business Management, Cum Laude
-- 🛠 15+ years in the field — full-stack, full-lifecycle, and full accountability
+- 🛠 14+ years in the field — full-stack, full-lifecycle, and full accountability
 - 🛠 25+ years using code as a tool in my toolbox
 - 💥 Proven cost-saver: reduced support workloads by 75% in public-sector projects
 
