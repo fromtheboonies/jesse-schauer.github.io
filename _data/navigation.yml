@@ -5,16 +5,16 @@ main:
   - title: "About"
     url: /about/
 
-  - title: "Personal Projects"
+  - title: "🧪 Personal Projects"
     url: /projects/personal/
 
-  - title: "Work Projects"
+  - title: "🧪 Work Projects"
     url: /projects/work/
 
   - title: "Resume"
     url: /resume/
 
-  - title: "Contact"
+  - title: "📬 Contact"
     url: /contact/
 
   - title: "Now"
