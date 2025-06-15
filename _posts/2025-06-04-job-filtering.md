@@ -5,4 +5,4 @@ categories: [automation, ai, job-search]
 layout: single
 ---
 
-Job hunting gets noisy fast. I built a Python script using the Microsoft Graph API and some local LLM logic to classify and sort all my LinkedIn job alerts into folders — tagging them as review, ignore, or priority.
+Job hunting gets noisy fast. I built a Python script using the Microsoft Graph API and some local LLM logic to classify and sort all my job alert emails from several job boards into folders — tagging them as review, ignore, or priority.
