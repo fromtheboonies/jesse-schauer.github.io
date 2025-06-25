@@ -1,7 +1,6 @@
 ---
 layout: home
 title: "Welcome"
-author_profile: true
 ---
 
 I’m Jesse Schauer — Master Software Engineer, business-minded fixer, and the merc that gets called in to get stuff done.

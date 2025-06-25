@@ -16,3 +16,17 @@ plugins:
 
 sidebar:
   nav: "main"
+
+seo:
+  type: "Blog"
+  title: "Jesse Schauer"
+  description: "Software engineer, legacy fixer, one-man dev shop."
+  image: /assets/images/jesse-schauer-headshot.png
+
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      image: /assets/images/jesse-schauer-headshot.png # or blank

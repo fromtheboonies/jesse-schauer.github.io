@@ -1,1 +1,113 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-06-15T12:22:53-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jesse Schauer</title><subtitle>One-man dev shop. The merc they call in to get stuff done. I build trust, not just code.</subtitle><entry><title type="html">How I Filtered 1,000+ Job Alert Emails with Python and AI</title><link href="http://localhost:4000/automation/ai/job-search/2025/06/04/job-filtering.html" rel="alternate" type="text/html" title="How I Filtered 1,000+ Job Alert Emails with Python and AI" /><published>2025-06-04T00:00:00-05:00</published><updated>2025-06-04T00:00:00-05:00</updated><id>http://localhost:4000/automation/ai/job-search/2025/06/04/job-filtering</id><content type="html" xml:base="http://localhost:4000/automation/ai/job-search/2025/06/04/job-filtering.html"><![CDATA[<p>Job hunting gets noisy fast. I built a Python script using the Microsoft Graph API and some local LLM logic to classify and sort all my job alert emails from several job boards into folders — tagging them as review, ignore, or priority.</p>]]></content><author><name></name></author><category term="automation" /><category term="ai" /><category term="job-search" /><summary type="html"><![CDATA[Job hunting gets noisy fast. I built a Python script using the Microsoft Graph API and some local LLM logic to classify and sort all my job alert emails from several job boards into folders — tagging them as review, ignore, or priority.]]></summary></entry></feed>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-06-24T21:37:27-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jesse Schauer</title><subtitle>One-man dev shop. The merc they call in to get stuff done. I build trust, not just code.</subtitle><entry><title type="html">How I Saved $50K+ on a Government Change Request by Asking One Question</title><link href="http://localhost:4000/2025/06/24/50k-savings-single-change-request.html" rel="alternate" type="text/html" title="How I Saved $50K+ on a Government Change Request by Asking One Question" /><published>2025-06-24T00:00:00-05:00</published><updated>2025-06-24T00:00:00-05:00</updated><id>http://localhost:4000/2025/06/24/50k-savings-single-change-request</id><content type="html" xml:base="http://localhost:4000/2025/06/24/50k-savings-single-change-request.html"><![CDATA[<!-- TEMP: force Open Graph image -->
+<meta property="og:image" content="https://www.jesseschauer.com/assets/images/50k_change_preview.png" />
+
+<p>In 2020, I sat in a design review meeting for a proposed new module in <strong>SPACES</strong> — North Dakota’s public benefits management system.</p>
+
+<p>If you’ve worked in government IT with benefits management, you probably know SPACES — or at least a variation of it. The name itself is a North Dakota-specific acronym coined during the benefits modernization effort. Under the hood, it’s a heavily customized case management system originally developed by a major consulting firm nearly 20 years ago and later adapted and implemented under different names in other states. It’s often jokingly referred to as:</p>
+
+<blockquote>
+  <p><em>“The 20-year-old system that replaces 40-year-old systems.”</em></p>
+</blockquote>
+
+<p>With that kind of legacy comes layers of process, paperwork, and tightly coupled architecture. Which is why the proposed change request on the table was so familiar — and so expensive.</p>
+
+<hr />
+
+<h2 id="the-original-plan-full-module-buildout">The Original Plan: Full Module Buildout</h2>
+
+<p>The ask seemed simple: a handful of users at the Department of Health and Human Services (DHHS) needed to <strong>securely view and export a specific subset of data</strong>.</p>
+
+<p>The solution presented?</p>
+
+<ul>
+  <li>A new <strong>module</strong> with multiple screens</li>
+  <li>Custom <strong>security groups</strong> and role-based access control</li>
+  <li>Built-in <strong>reporting and export functionality</strong></li>
+  <li>Full design, development, testing, and documentation cycles</li>
+</ul>
+
+<p>On paper, it made sense. But the real cost was already snowballing. Between development, multiple rounds of SIT/UAT testing, and security provisioning across environments, this was shaping up to be <strong>a 400+ hour effort</strong> — easily <strong>$50,000 to $70,000</strong> in initial vendor and internal costs.</p>
+
+<hr />
+
+<h2 id="the-turning-point-just-listen">The Turning Point: Just Listen</h2>
+
+<p>I was brought in to review the proposed design and provide the technical approach and estimates. While the team walked through their documents, a casual comment from the stakeholders stopped me in my tracks:</p>
+
+<blockquote>
+  <p><em>“We currently just run queries in our viewer tool and export the data to Excel.”</em></p>
+</blockquote>
+
+<p>So I asked a simple question:<br />
+<strong>“Why don’t we just continue doing that — but with a secured, predefined view in the SPACES database?”</strong></p>
+
+<p>You could hear the pause.</p>
+
+<p>Not because it was a wild idea — but because no one had considered it.</p>
+
+<hr />
+
+<h2 id="the-lazy-solution-that-worked">The Lazy Solution That Worked</h2>
+
+<p>I’m not being modest when I say: I’m lazy.<br />
+<strong>The good kind of lazy — the kind that looks for outcomes, not process for process’ sake.</strong></p>
+
+<p>Instead of writing a single line of Java, I:</p>
+
+<ul>
+  <li>Created a <strong>predefined SQL view</strong> scoped to the exact data they needed</li>
+  <li>Configured <strong>read-only access</strong> for authorized users</li>
+  <li>Documented how to connect to the database securely using their existing tools</li>
+</ul>
+
+<p>That’s it.<br />
+<strong>No new modules. No new screens. No added maintenance.</strong></p>
+
+<p>The users got exactly what they needed. It took only a couple of hours of actual work — plus the usual herding of cats to get access and approvals.</p>
+
+<hr />
+
+<h2 id="the-real-savings-time-cost-complexity">The Real Savings: Time, Cost, Complexity</h2>
+
+<p>By choosing a lean solution that fit the real use case, we avoided:</p>
+
+<ul>
+  <li>Hundreds of hours in <strong>design, development, and testing</strong></li>
+  <li>Time-consuming <strong>security role design and approvals</strong></li>
+  <li>Dozens of pages of <strong>documentation and test script authoring</strong></li>
+  <li>Ongoing <strong>maintenance debt</strong></li>
+</ul>
+
+<p>The result?<br />
+A working, secure solution delivered in <strong>1/400th</strong> of the estimated time.<br />
+At standard government contracting rates, that’s <strong>$50,000+ in cost avoidance</strong> — for a feature that was already being done manually.</p>
+
+<hr />
+
+<h2 id="lessons-for-public-sector-tech">Lessons for Public Sector Tech</h2>
+
+<p>This story isn’t about being clever. It’s about asking the right question at the right time — and having enough technical context to offer a better path.</p>
+
+<blockquote>
+  <p>Legacy modernization doesn’t always mean “rewrite it.”<br />
+Sometimes it means <strong>don’t write it at all</strong>.</p>
+</blockquote>
+
+<p>When we stop treating every request as a dev project, and instead look at the system as a whole, we uncover opportunities for massive savings — in time, money, and stress.</p>
+
+<p>I’ll always advocate for code when it’s needed.<br />
+But I’ll also keep speaking up when it’s not.</p>
+
+<hr />
+
+<h2 id="wrapping-up">Wrapping Up</h2>
+
+<p>This isn’t the only time I’ve helped state agencies and enterprise teams save tens of thousands — even hundreds of thousands — by questioning the default build-it instinct or status quo. But it’s one of my favorite examples because the fix was so simple — and the ripple effects so big.</p>
+
+<p><strong>One question. One database view. $50K+ saved.</strong><br />
+Sometimes that’s all it takes.</p>
+
+<hr />
+
+<p><em>Want more behind-the-scenes insights on government IT, pragmatic legacy modernization, and automation that actually works?</em><br />
+👉 Visit <a href="https://www.jesseschauer.com">JesseSchauer.com</a> or connect with me on <a href="https://linkedin.com/in/jesse-schauer">LinkedIn</a>.</p>]]></content><author><name>Jesse Schauer</name></author><category term="government IT" /><category term="legacy systems" /><category term="cost savings" /><category term="SPACES" /><category term="public sector tech" /><category term="database views" /><category term="case study" /><summary type="html"><![CDATA[A simple, pragmatic solution that avoided 400+ hours of work and saved $50,000.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/50k_change_preview.png" /><media:content medium="image" url="http://localhost:4000/assets/images/50k_change_preview.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">How I Filtered 1,000+ Job Alert Emails with Python and AI</title><link href="http://localhost:4000/automation/ai/job-search/2025/06/04/job-filtering.html" rel="alternate" type="text/html" title="How I Filtered 1,000+ Job Alert Emails with Python and AI" /><published>2025-06-04T00:00:00-05:00</published><updated>2025-06-04T00:00:00-05:00</updated><id>http://localhost:4000/automation/ai/job-search/2025/06/04/job-filtering</id><content type="html" xml:base="http://localhost:4000/automation/ai/job-search/2025/06/04/job-filtering.html"><![CDATA[<p>Job hunting gets noisy fast. I built a Python script using the Microsoft Graph API and some local LLM logic to classify and sort all my job alert emails from several job boards into folders — tagging them as review, ignore, or priority.</p>]]></content><author><name></name></author><category term="automation" /><category term="ai" /><category term="job-search" /><summary type="html"><![CDATA[Job hunting gets noisy fast. I built a Python script using the Microsoft Graph API and some local LLM logic to classify and sort all my job alert emails from several job boards into folders — tagging them as review, ignore, or priority.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/jesse-schauer-headshot.png" /><media:content medium="image" url="http://localhost:4000/assets/images/jesse-schauer-headshot.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
