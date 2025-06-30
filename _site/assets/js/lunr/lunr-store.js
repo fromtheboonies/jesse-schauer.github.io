@@ -10,4 +10,10 @@ var store = [{
         "tags": ["government IT","legacy systems","cost savings","SPACES","public sector tech","database views","case study"],
         "url": "/2025/06/24/50k-savings-single-change-request.html",
         "teaser": null
+      },{
+        "title": "Lessons from the Trench: Migrating a Legacy System from MySQL 5 to MariaDB",
+        "excerpt":"“It’s just a drop-in replacement.” — Famous last words Overview When you’re working with a legacy application built on MySQL 5.x and planning a migration to MariaDB, it can be tempting to treat the task as a simple dependency upgrade. After all, MariaDB positions itself as a drop-in replacement. But...","categories": [],
+        "tags": ["legacy systems","database migration","MariaDB","MySQL","technical debt","government IT","case study"],
+        "url": "/2025/06/30/mysql-mariadb-migration.html",
+        "teaser": null
       }]
