@@ -1,4 +1,123 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://jesseschauer.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jesseschauer.com/" rel="alternate" type="text/html" /><updated>2025-06-25T02:40:10+00:00</updated><id>https://jesseschauer.com/feed.xml</id><title type="html">Jesse Schauer</title><subtitle>One-man dev shop. The merc they call in to get stuff done. I build trust, not just code.</subtitle><entry><title type="html">How I Saved $50K+ on a Government Change Request by Asking One Question</title><link href="https://jesseschauer.com/2025/06/24/50k-savings-single-change-request.html" rel="alternate" type="text/html" title="How I Saved $50K+ on a Government Change Request by Asking One Question" /><published>2025-06-24T00:00:00+00:00</published><updated>2025-06-24T00:00:00+00:00</updated><id>https://jesseschauer.com/2025/06/24/50k-savings-single-change-request</id><content type="html" xml:base="https://jesseschauer.com/2025/06/24/50k-savings-single-change-request.html"><![CDATA[<!-- TEMP: force Open Graph image -->
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="https://jesseschauer.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://jesseschauer.com/" rel="alternate" type="text/html" /><updated>2025-06-30T23:52:50+00:00</updated><id>https://jesseschauer.com/feed.xml</id><title type="html">Jesse Schauer</title><subtitle>One-man dev shop. The merc they call in to get stuff done. I build trust, not just code.</subtitle><entry><title type="html">Lessons from the Trench: Migrating a Legacy System from MySQL 5 to MariaDB</title><link href="https://jesseschauer.com/2025/06/30/mysql-mariadb-migration.html" rel="alternate" type="text/html" title="Lessons from the Trench: Migrating a Legacy System from MySQL 5 to MariaDB" /><published>2025-06-30T00:00:00+00:00</published><updated>2025-06-30T00:00:00+00:00</updated><id>https://jesseschauer.com/2025/06/30/mysql-mariadb-migration</id><content type="html" xml:base="https://jesseschauer.com/2025/06/30/mysql-mariadb-migration.html"><![CDATA[<blockquote>
+  <p>“It’s just a drop-in replacement.” — Famous last words</p>
+</blockquote>
+
+<h2 id="overview">Overview</h2>
+
+<p>When you’re working with a legacy application built on MySQL 5.x and planning a migration to MariaDB, it can be tempting to treat the task as a simple dependency upgrade. After all, MariaDB positions itself as a drop-in replacement. But in reality, it’s anything but simple when you factor in decade-old codebases, fragile integrations, and unspoken institutional knowledge.</p>
+
+<p>In this post, I want to share a few key lessons from a recent migration I supported on a Spring WebMVC application that had been running against MySQL 5 for years. The transition to modern MariaDB involved much more than swapping connection strings—and these lessons might save your team from a painful surprise.</p>
+
+<hr />
+
+<h2 id="lesson-1-end-to-end-testing-is-non-negotiable">Lesson 1: End-to-End Testing is Non-Negotiable</h2>
+
+<p>About six months before go-live, we ran an initial dry-run migration. It failed.</p>
+
+<p>The culprit? Timestamp formatting. A subtle change in millisecond precision between MySQL and MariaDB caused parts of the application to break unexpectedly.</p>
+
+<p>Up until that point, the migration had been considered a low-risk, drop-in upgrade by several stakeholders until this failure surfaced. Once the issues became visible, I had to escalate through my manager to get the right people involved and realign expectations.</p>
+
+<p>This experience became the forcing function to implement a full suite of end-to-end tests covering critical workflows. Without that early red flag, the actual cutover could have led to cascading failures in production.</p>
+
+<p><strong>Takeaway:</strong> No matter how confident you are in your schema and code, run full end-to-end testing early and often. Assume that what looks compatible may still behave differently in production.</p>
+
+<hr />
+
+<h2 id="lesson-2-appoint-a-one-man-dev-shop">Lesson 2: Appoint a “One-Man Dev Shop”</h2>
+
+<p>Legacy systems often span layers of business logic, infrastructure quirks, and tacit team knowledge. During this migration, I found myself acting as a translator across all of it—jumping from SQL anomalies to ORM behavior to release planning.</p>
+
+<p>Having someone who understands the application holistically (not just the database or the UI) is invaluable. This role becomes the glue that catches what would otherwise slip through the cracks.</p>
+
+<p><strong>That said, this kind of cross-functional role is often filled informally—frequently by someone scoped as “just a Java developer.”</strong>
+When migrations like this succeed, it’s often because someone quietly picks up the architectural slack. But ideally, that kind of broad ownership should be recognized, supported, and intentionally staffed—not left to chance or convenience.</p>
+
+<p><strong>Takeaway:</strong> Assign at least one deep generalist to the team—someone who can hold the full context and anticipate impact across boundaries.</p>
+
+<hr />
+
+<h2 id="lesson-3-compatibility-is-not-identity">Lesson 3: Compatibility is Not Identity</h2>
+
+<p>Yes, MariaDB is designed to be compatible with MySQL. But over the years, the projects have diverged. We encountered subtle differences in collation behavior, error handling, and index optimizations.</p>
+
+<p>These weren’t necessarily bugs—just implementation details that had never been tested under MariaDB until now.</p>
+
+<p><strong>Takeaway:</strong> Treat “compatible” systems with the same skepticism you’d give any new vendor. Validate every assumption.</p>
+
+<hr />
+
+<h2 id="lesson-4-legacy-code-has-gravity">Lesson 4: Legacy Code Has Gravity</h2>
+
+<p>The application we migrated had been stable for years—but that stability was built on brittle foundations. Stored procedures, raw JDBC, ancient configuration formats… none of it was written for modern MariaDB.</p>
+
+<p>Even minor changes in defaults or behavior had ripple effects, especially when layered with assumptions baked into business logic.</p>
+
+<p><strong>Takeaway:</strong> Modernizing the database will expose forgotten dependencies. Budget time for triage and legacy archaeology.</p>
+
+<hr />
+
+<h2 id="bonus-the-batch-server-surprise">Bonus: The “Batch Server” Surprise</h2>
+
+<p>During our prep work, we uncovered a cluster of legacy VB applications and Microsoft Access databases running quietly on a Windows VM accessed via RDP and known simply as “the batch server.” It was neither actively maintained nor monitored—and yet, several important business processes still depended on it.</p>
+
+<p>Getting someone with the authorization and knowledge to even <em>touch</em> those apps became its own mini-project. It’s a reminder that legacy isn’t always what’s in Git—it’s what’s still running silently in the corner, waiting to break.</p>
+
+<p><strong>Takeaway:</strong> Inventory everything early. If it talks to your database, it’s part of the migration—whether you knew it or not.</p>
+
+<hr />
+
+<h2 id="bonus-the-utf-8-copypaste-quirk">Bonus: The UTF-8 Copy/Paste Quirk</h2>
+
+<p>Another surprise surfaced when users started pasting content from emails into form fields. Despite both systems claiming UTF-8 support, subtle encoding inconsistencies began breaking validation and downstream processes—especially when special characters or smart quotes snuck in.</p>
+
+<p>These issues are notoriously hard to trace and even harder to reproduce consistently. In legacy environments, text encoding is one of the quietest but most persistent saboteurs.</p>
+
+<p><strong>Takeaway:</strong> Don’t assume UTF-8 means the same thing across all input sources. Sanitize aggressively and test with real-world data—especially copy/paste content from email clients.</p>
+
+<hr />
+
+<h2 id="bonus-the-data-too-long-mystery">Bonus: The “Data Too Long” Mystery</h2>
+
+<p>After go-live, we encountered a failure where an external vendor’s application began receiving “Data too long” errors when submitting payloads via API. The kicker? This hadn’t happened before.</p>
+
+<p>Turns out, the old MySQL JDBC driver silently truncated values to fit the database column definitions—no errors, no warnings. When we switched to MariaDB, this behavior stopped, and the system began failing as it should have all along. The fix required coordinating with the vendor to validate and trim their input on their side.</p>
+
+<p>Tracking this down was especially challenging since no error was previously logged, and the only clues were buried in raw server logs.</p>
+
+<p><strong>Takeaway:</strong> Migrations will surface bad behavior that legacy systems had quietly tolerated. Expect some cleanup that feels more like archaeology than engineering.</p>
+
+<hr />
+
+<h2 id="bonus-timing-and-coverage-matter">Bonus: Timing and Coverage Matter</h2>
+
+<p>Even the most well-planned migration can falter if the timing is off. Attempting a major cutover near holidays or during peak vacation seasons introduces unnecessary risk—key people may be unavailable when you need them most. We ran into exactly that.</p>
+
+<p>Additionally, make sure every major module or subsystem has at least one subject matter expert (SME) on call—and a backup SME identified. Knowledge gaps become exponentially more painful under time pressure.</p>
+
+<p><strong>Takeaway:</strong> Avoid migrations during periods when coverage is limited, and ensure there’s redundancy in key personnel. Even temporary knowledge gaps can stall critical progress.</p>
+
+<hr />
+
+<h2 id="final-thoughts">Final Thoughts</h2>
+
+<p>Before wrapping up, I want to make one thing clear: I wasn’t a hero on this migration—I was just one of the cogs in the machine, trying to keep things moving and going a bit above and beyond when needed. Many of the wins came from collaboration, timing, and a willingness to poke at things others had written off as stable.</p>
+
+<p>Database migrations in legacy systems are never just technical. They are organizational, historical, and often political. By catching timestamp issues early, pushing for full E2E validation, and acting as a bridge between disconnected silos, we turned what could have been a painful failure into a mostly smooth transition.</p>
+
+<p>If you’re about to take on a migration like this, here’s the simplest advice I can offer:</p>
+
+<ul>
+  <li>Test like it matters (because it does)</li>
+  <li>Staff like it matters (because it really does)</li>
+  <li>And respect the gravity of legacy systems</li>
+</ul>
+
+<p>Because once the data starts flowing, there’s no hitting Undo.</p>
+
+<hr />
+
+<p><em>Want to swap stories or ask questions about your own legacy migration? Feel free to connect with me on connect with me on <a href="https://linkedin.com/in/jesse-schauer">LinkedIn</a></em></p>]]></content><author><name>Jesse Schauer</name></author><category term="legacy systems" /><category term="database migration" /><category term="MariaDB" /><category term="MySQL" /><category term="technical debt" /><category term="government IT" /><category term="case study" /><summary type="html"><![CDATA[What looked like a simple database upgrade turned into a deep dive through legacy code, hidden integrations, and encoding nightmares.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://jesseschauer.com/assets/images/jesse-schauer-headshot.png" /><media:content medium="image" url="https://jesseschauer.com/assets/images/jesse-schauer-headshot.png" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">How I Saved $50K+ on a Government Change Request by Asking One Question</title><link href="https://jesseschauer.com/2025/06/24/50k-savings-single-change-request.html" rel="alternate" type="text/html" title="How I Saved $50K+ on a Government Change Request by Asking One Question" /><published>2025-06-24T00:00:00+00:00</published><updated>2025-06-24T00:00:00+00:00</updated><id>https://jesseschauer.com/2025/06/24/50k-savings-single-change-request</id><content type="html" xml:base="https://jesseschauer.com/2025/06/24/50k-savings-single-change-request.html"><![CDATA[<!-- TEMP: force Open Graph image -->
 <meta property="og:image" content="https://www.jesseschauer.com/assets/images/50k_change_preview.png" />
 
 <p>In 2020, I sat in a design review meeting for a proposed new module in <strong>SPACES</strong> — North Dakota’s public benefits management system.</p>
