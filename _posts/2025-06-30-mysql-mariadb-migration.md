@@ -123,4 +123,4 @@ Because once the data starts flowing, there’s no hitting Undo.
 
 ---
 
-*Want to swap stories or ask questions about your own legacy migration? Feel free to connect with me on connect with me on [LinkedIn](https://linkedin.com/in/jesse-schauer)*
+*Want to swap stories or ask questions about your own legacy migration? Feel free to connect with me on [LinkedIn](https://linkedin.com/in/jesse-schauer)*
